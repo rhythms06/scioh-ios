@@ -24,12 +24,14 @@
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1IjoidGtsZWluOTciLCJhIjoiY2lrcmFpcG1hMDBpY3V5bHR4amx3eGI1YyJ9.cp9vdLgyyo2_5YsE_O8k7w</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This way, you can document your night out!</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>SCIOH uses your location to let your friends know where you&apos;re hanging out. You can modify how often this occurs in the settings.</string>
+	<string>SCIOH uses your location to let your friends know where you're hanging out. You can modify how often this occurs in the settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>SCIOH uses your location to let your friends know where you&apos;re hanging out. You can modify how often this occurs in the settings.</string>
+	<string>SCIOH uses your location to let your friends know where you're hanging out. You can modify how often this occurs in the settings.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -42,8 +44,6 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1IjoidGtsZWluOTciLCJhIjoiY2lrcmFpcG1hMDBpY3V5bHR4amx3eGI1YyJ9.cp9vdLgyyo2_5YsE_O8k7w</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

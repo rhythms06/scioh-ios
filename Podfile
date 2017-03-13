@@ -21,7 +21,7 @@ target 'SCIOH' do
 #  pod 'Firebase/RemoteConfig'
   pod 'Firebase/Auth'
 #  pod 'Firebase/AppIndexing'
-#  pod 'Firebase/Storage'
+  pod 'Firebase/Storage'
 
   pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 

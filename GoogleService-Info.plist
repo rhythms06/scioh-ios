@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>262493385789-8sa8rur19lvpnf0file20karp2k143im.apps.googleusercontent.com</string>
+	<string>430265051677-1fmhfno1lj7hcjd49n2l2v1m6taki99o.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.262493385789-8sa8rur19lvpnf0file20karp2k143im</string>
+	<string>com.googleusercontent.apps.430265051677-1fmhfno1lj7hcjd49n2l2v1m6taki99o</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBoTQVvHqqJhgGsoKL75ug26SoGVL8hUuI</string>
+	<string>AIzaSyDcYS7OYQyofmiJjKhQcZGdYy9Ux1ZtA30</string>
 	<key>GCM_SENDER_ID</key>
-	<string>262493385789</string>
+	<string>430265051677</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.app.SCIOH</string>
+	<string>com.app.Luna</string>
 	<key>PROJECT_ID</key>
-	<string>scioh-app</string>
+	<string>luna-5e9e0</string>
 	<key>STORAGE_BUCKET</key>
-	<string>scioh-app.appspot.com</string>
+	<string>luna-5e9e0.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:262493385789:ios:7c0c1b8d81c2afb8</string>
+	<string>1:430265051677:ios:b0f7fbfd25f57237</string>
 	<key>DATABASE_URL</key>
-	<string>https://scioh-app.firebaseio.com</string>
+	<string>https://luna-5e9e0.firebaseio.com</string>
 </dict>
 </plist>
