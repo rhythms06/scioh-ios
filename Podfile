@@ -2,6 +2,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 # Uncomment this line to define a global platform for your project
 platform :ios, '10.0'
+use_frameworks!
 
 target 'SCIOH' do
   # Comment this line if you're not using Swift and don't want to use dynamic frameworks
@@ -21,7 +22,7 @@ target 'SCIOH' do
 #  pod 'Firebase/RemoteConfig'
   pod 'Firebase/Auth'
 #  pod 'Firebase/AppIndexing'
-#  pod 'Firebase/Storage'
+  pod 'Firebase/Storage'
 
   pod 'GeoFire', :git => 'https://github.com/firebase/geofire-objc.git'
 

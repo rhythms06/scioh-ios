@@ -11,7 +11,6 @@
 		2E5AAD3C1D9392D20000FBB7 /* UserSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5AAD3B1D9392D20000FBB7 /* UserSearchTable.swift */; };
 		2E5EA16F1D22C5DC00DA92B6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EA16E1D22C5DC00DA92B6 /* SettingsViewController.swift */; };
 		2E5EA1711D25B6AE00DA92B6 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E5EA1701D25B6AD00DA92B6 /* FriendsViewController.swift */; };
-		2E7446861CFE7F390093FE48 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2E7446851CFE7F390093FE48 /* GoogleService-Info.plist */; };
 		2E7446871CFF84820093FE48 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F69AC1C7173C30066994F /* ProfileViewController.swift */; };
 		2E7446881CFF84970093FE48 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F69B91C72939F0066994F /* ResetPasswordViewController.swift */; };
 		2E74468C1CFFAC250093FE48 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E74468B1CFFAC250093FE48 /* TabBarController.swift */; };
@@ -21,6 +20,7 @@
 		2E85E0551E3BDDDB00D62F8E /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E8E03BE1E1454A2000D680F /* ExtProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E03BD1E1454A2000D680F /* ExtProfileViewController.swift */; };
 		2E9DDEC51DEA4B03002C6A2A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DDEC41DEA4B03002C6A2A /* PopUpViewController.swift */; };
+		2EEC16B91E760F9A00137442 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EEC16B81E760F9A00137442 /* GoogleService-Info.plist */; };
 		883CA64514D2CBEBF06DE470 /* Pods_SCIOH.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32BA74A2CAB3C4795009D803 /* Pods_SCIOH.framework */; };
 		A75BE0921C77E26D00BEB149 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75BE0911C77E26C00BEB149 /* TestViewController.swift */; };
 		A7637B271C6FEC1100D6F36B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7637B261C6FEC1100D6F36B /* AppDelegate.swift */; };
@@ -57,7 +57,6 @@
 		2E5AAD3B1D9392D20000FBB7 /* UserSearchTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSearchTable.swift; sourceTree = "<group>"; };
 		2E5EA16E1D22C5DC00DA92B6 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		2E5EA1701D25B6AD00DA92B6 /* FriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
-		2E7446851CFE7F390093FE48 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2E74468B1CFFAC250093FE48 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2E77F9191DEAB41300D158BF /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
 		2E77F91B1DEAECF900D158BF /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
@@ -65,6 +64,7 @@
 		2E8E03BD1E1454A2000D680F /* ExtProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtProfileViewController.swift; sourceTree = "<group>"; };
 		2E9DDEC41DEA4B03002C6A2A /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		2EC8AA061D807C4800923C06 /* SCIOH.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SCIOH.entitlements; sourceTree = "<group>"; };
+		2EEC16B81E760F9A00137442 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		32BA74A2CAB3C4795009D803 /* Pods_SCIOH.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SCIOH.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7006629C2D5132B3CCC3E142 /* Pods-SCIOH.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SCIOH.release.xcconfig"; path = "Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH.release.xcconfig"; sourceTree = "<group>"; };
 		A75BE0911C77E26C00BEB149 /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 			children = (
 				A7637B381C6FED8300D6F36B /* MapKit.framework */,
 				2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */,
-				2E7446851CFE7F390093FE48 /* GoogleService-Info.plist */,
+				2EEC16B81E760F9A00137442 /* GoogleService-Info.plist */,
 				A7637B251C6FEC1000D6F36B /* SCIOH */,
 				A7637B241C6FEC1000D6F36B /* Products */,
 				B0939D8D5F3EB82E7AB5FB4D /* Pods */,
@@ -248,8 +248,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7637B311C6FEC1200D6F36B /* LaunchScreen.storyboard in Resources */,
+				2EEC16B91E760F9A00137442 /* GoogleService-Info.plist in Resources */,
 				2E77F91A1DEAB41300D158BF /* PopUpView.xib in Resources */,
-				2E7446861CFE7F390093FE48 /* GoogleService-Info.plist in Resources */,
 				A7637B2E1C6FEC1200D6F36B /* Assets.xcassets in Resources */,
 				A7637B2C1C6FEC1100D6F36B /* Main.storyboard in Resources */,
 			);
@@ -264,9 +264,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -279,9 +282,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -307,13 +321,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SCIOH-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -476,7 +493,7 @@
 				);
 				INFOPLIST_FILE = SCIOH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.SCIOH;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.Luna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_VERSION = 3.0;
@@ -499,7 +516,7 @@
 				);
 				INFOPLIST_FILE = SCIOH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.SCIOH;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.Luna;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

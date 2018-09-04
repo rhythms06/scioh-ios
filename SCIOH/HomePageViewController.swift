@@ -44,6 +44,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     
     var circleQuery = GFCircleQuery()
     
+    var isMonitoringRegion = false
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -70,9 +72,9 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-//        let apt200Location = CLLocation(latitude: 45.514372, longitude: -73.573364)
+        //TODO: Create a webform for adding club locations.
         
-//        geoFire?.setLocation(apt200Location, forKey: "Apt200")
+//        geoFire?.setLocation(CLLocation(latitude: 45.514372, longitude: -73.573364), forKey: "Apt200")
         
         mapView.delegate = self
         
@@ -97,13 +99,20 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
             
             _ = circleQuery.observe(.keyEntered, with: { (key, location) in
                 
-                print("The user is currently near venue \(key!). Start monitoring.")
+//                if(!self.isMonitoringRegion) {
+            
+                    print("The user is currently near venue \(key!). Start monitoring.")
                 
-                let region = CLCircularRegion.init(center: (location?.coordinate)!, radius: 50.0, identifier: key!)
+                    let region = CLCircularRegion.init(center: (location?.coordinate)!, radius: 50.0, identifier: key!)
                 
-                self.locationManager.startMonitoring(for: region)
+                    self.locationManager.startMonitoring(for: region)
                 
-                print("Started monitoring \(region.identifier)")
+                    self.isMonitoringRegion = true
+                    print("Started monitoring \(region.identifier)")
+                
+//                } else {
+//                    print("The user appears to be near venue \(key!), but monitoring is already in effect for a different venue.")
+//                }
                 
             })
             
@@ -112,6 +121,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
                 
                 let region = CLCircularRegion.init(center: (location?.coordinate)!, radius: 50.0, identifier: key!)
                 
+                self.isMonitoringRegion = false
                 self.locationManager.stopMonitoring(for: region)
                 
             })
@@ -220,9 +230,15 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         
         if annotationImage == nil {
             let url = URL(string: "https://images.weserv.nl/?url=\(annotation.subtitle!!)&h=60&w=60&t=square")
-            let data = try? Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
-            let image = UIImage(data: data!)!
-            annotationImage = MGLAnnotationImage(image: maskRoundedImage(image: image, radius: 30.0) , reuseIdentifier: "\(annotation.coordinate.latitude)")
+            
+            let data:Data?
+            do {
+                data = try Data(contentsOf: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check / try-catch
+                let image = UIImage(data: data!)!
+                annotationImage = MGLAnnotationImage(image: maskRoundedImage(image: image, radius: 30.0) , reuseIdentifier: "\(annotation.coordinate.latitude)")
+            } catch {
+                print("An image could not be found at URL \(annotation.subtitle) for \(annotation.title).")
+            }
         }
         
         return annotationImage
@@ -279,15 +295,27 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         print("the user just entered venue \(region.identifier)")
         
         if(idleTimer.isValid) {
-            idleTimer.invalidate()
-            idleTimer = Timer()
+            if(String(describing: idleTimer.userInfo) != "") {
+                print("Not resetting the timer because the user has entered an extraneous venue.")
+            } else {
+                print("The user has entered a venue. Resetting idle timer.")
+                idleTimer.invalidate()
+                idleTimer = Timer()
+            }
+        } else {
+            print("time to start timing for \(region.identifier)...")
+            
+            idleTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(userIsIdle(_:)), userInfo: region.identifier, repeats: false);
         }
+
+        if(idleTimer.userInfo == nil) {
+            print("time to start timing for \(region.identifier)...")
+        
+            idleTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(userIsIdle(_:)), userInfo: region.identifier, repeats: false);
+        }
+
         
         // TODO: Check if the user is within the region's polygon as described in Firebase.
-        
-        print("time to start timing...")
-    
-        idleTimer = Timer.scheduledTimer(timeInterval: 15.0, target: self, selector: #selector(userIsIdle(_:)), userInfo: region.identifier, repeats: false);
     }
     
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
@@ -299,8 +327,13 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         }
             
         if(idleTimer.isValid) {
-            idleTimer.invalidate()
-            idleTimer = Timer()
+            if(String(describing: idleTimer.userInfo) == region.identifier) {
+                print("The user has left. Resetting idle timer.")
+                idleTimer.invalidate()
+                idleTimer = Timer()
+            } else {
+                print("Not stopping the timer because the user has exited an extraneous venue.")
+            }
         }
     }
     

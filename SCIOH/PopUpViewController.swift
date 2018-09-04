@@ -8,14 +8,19 @@
 
 import Foundation
 import UIKit
+import Firebase
 
 class PopUpViewController:UIViewController {
     
-    
+    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
     
     @IBOutlet var popUpView: UIView!
     
     @IBOutlet var popUpBar: UINavigationBar!
+    
+    @IBOutlet var numFollowingLabel: UILabel!
+    
+    @IBOutlet var numPhotosLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,17 @@ class PopUpViewController:UIViewController {
     func showInView(aView: UIView!, withTitle atitle: String!, animated: Bool) {
         aView.addSubview(self.view)
         popUpBar.topItem?.title = atitle
+        
+        let venueID = atitle.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
+        
+        self.ref.child("Test/\(venueID)/attendees").observe(FIRDataEventType.value, with: ({ (snapshot) in
+            self.numFollowingLabel.text = "\(snapshot.childrenCount) Live"
+        }))
+        
+        self.ref.child("Test/\(venueID)/images").observe(FIRDataEventType.value, with: ({ (snapshot) in
+            self.numPhotosLabel.text = "\(snapshot.childrenCount) Photos"
+        }))
+        
         if animated {
             self.showAnimate()
         }
