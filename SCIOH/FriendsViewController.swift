@@ -21,7 +21,7 @@ class FriendsViewController : UITableViewController {
         
         tableView.dataSource = self
         
-        let ref = FIRDatabase.database().reference()
+        let ref = Database.database().reference()
         
         ref.child("users").observeSingleEvent(of: .value, with: { (snapshot) in
             for uid in snapshot.value! as! Dictionary<String, AnyObject> {

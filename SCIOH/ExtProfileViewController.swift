@@ -12,7 +12,7 @@ import Firebase
 class ExtProfileViewController : UIViewController {
     @IBOutlet var userFullNameLabel: UILabel!
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     
     let uid = UserDefaults.standard.value(forKey: "uid")!
     
@@ -30,7 +30,7 @@ class ExtProfileViewController : UIViewController {
     
     @IBAction func addFriendButton(_ sender: Any) {
         if(addFriend.currentTitle == "Add Friend") {
-            addFriend.setTitle("Request Sent", for: UIControlState.normal)
+            addFriend.setTitle("Request Sent", for: UIControl.State.normal)
             self.ref.child("users/\(uid)/friends").setValue(["\(useruid)": false])
             self.ref.child("users/\(useruid)/friends").setValue(["\(uid)":false])
             print("You just sent User \(useruid) a friend request")

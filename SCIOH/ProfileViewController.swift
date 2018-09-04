@@ -13,15 +13,15 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
 
     @IBOutlet var fullNameLabel: UILabel!
     
-    let uid = FIRAuth.auth()?.currentUser?.uid
+    let uid = Auth.auth().currentUser?.uid
 //    var base64String: NSString!
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.ref.child("users").child(uid!).observe(FIRDataEventType.value, with: ({ (snapshot) in
+        self.ref.child("users").child(uid!).observe(DataEventType.value, with: ({ (snapshot) in
             // retrieve user info
             let ssnapshot = snapshot.value! as! [String : Any]
             let fullName = ssnapshot["fullname"]
@@ -76,7 +76,7 @@ class ProfileViewController: UIViewController, UIImagePickerControllerDelegate, 
     }
 
     
-    func handleSwipes(_ sender: UISwipeGestureRecognizer){
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer){
         if (sender.direction == .right){
             self.performSegue(withIdentifier: "ProfileToCameraSwipe", sender: self)
         }

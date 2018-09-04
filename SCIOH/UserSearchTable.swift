@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 
 class UserSearchTable : UITableViewController {
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     var matchingItems:[String] = []
 //    var userExists = false
     
@@ -33,7 +33,7 @@ class UserSearchTable : UITableViewController {
 extension UserSearchTable : UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBarText = searchController.searchBar.text
-        self.ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: searchBarText).observe(FIRDataEventType.value, with: ({ (snapshot) in
+        self.ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: searchBarText).observe(DataEventType.value, with: ({ (snapshot) in
             if snapshot.hasChildren() {
                 let userDict = snapshot.value as! Dictionary<String, Any>
                 for (id, detail) in userDict {

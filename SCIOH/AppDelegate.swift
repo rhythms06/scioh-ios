@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         super.init()
         
         // Set up Firebase API
-        FIRApp.configure()
+        FirebaseApp.configure()
         
     }
 

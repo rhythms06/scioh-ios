@@ -12,7 +12,7 @@ import Firebase
 
 class AccountSettingsViewController: UITableViewController, UITextFieldDelegate {
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     
     @IBOutlet var fullNameTextField: UITextField!
     
@@ -33,7 +33,7 @@ class AccountSettingsViewController: UITableViewController, UITextFieldDelegate 
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.ref.child("users/\(uid)/fullname").setValue(fullNameTextField.text! as String!)
+        self.ref.child("users/\(uid)/fullname").setValue(fullNameTextField.text! as String)
         self.fullNameTextField.resignFirstResponder()
         return true
     }

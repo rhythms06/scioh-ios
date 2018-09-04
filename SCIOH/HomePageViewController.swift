@@ -22,9 +22,9 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     @IBOutlet var mapView: MGLMapView!
     
     var annotation:MGLAnnotation!
-    var localSearchRequest:MKLocalSearchRequest!
+    var localSearchRequest:MKLocalSearch.Request!
     var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearchResponse!
+    var localSearchResponse:MKLocalSearch.Response!
     var error:NSError!
     
     let locationManager = CLLocationManager()
@@ -37,8 +37,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     var locB = CLLocation(latitude: 0.0, longitude: 0.0)
     var locA = CLLocation(latitude: 0.0, longitude: 0.0)
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
-    var geoFire = GeoFire.init(firebaseRef: FIRDatabase.database().reference(withPath: "Test"))
+    var ref : DatabaseReference! = Database.database().reference()
+    var geoFire = GeoFire.init(firebaseRef: Database.database().reference(withPath: "Test"))
     
     var idleTimer:Timer = Timer()
     
@@ -95,15 +95,15 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
             
             print("the user has enabled location services ;)")
             
-            circleQuery = (geoFire?.query(at: locationManager.location, withRadius: 0.5))!
+            circleQuery = (geoFire.query(at: locationManager.location!, withRadius: 0.5))
             
             _ = circleQuery.observe(.keyEntered, with: { (key, location) in
                 
 //                if(!self.isMonitoringRegion) {
             
-                    print("The user is currently near venue \(key!). Start monitoring.")
+                print("The user is currently near venue \(key). Start monitoring.")
                 
-                    let region = CLCircularRegion.init(center: (location?.coordinate)!, radius: 50.0, identifier: key!)
+                let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
                 
                     self.locationManager.startMonitoring(for: region)
                 
@@ -117,9 +117,9 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
             })
             
             _ = circleQuery.observe(.keyExited, with: { (key, location) in
-                print("Key \(key!) exited the search area")
+                print("Key \(key) exited the search area")
                 
-                let region = CLCircularRegion.init(center: (location?.coordinate)!, radius: 50.0, identifier: key!)
+                let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
                 
                 self.isMonitoringRegion = false
                 self.locationManager.stopMonitoring(for: region)
@@ -134,8 +134,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
                 if error == nil && (placemarks?.count)! > 0 {
                     let currentLocation = (placemarks?[0])! as CLPlacemark
                     if(currentLocation.locality! != "Montréal") {
-                        let alertController = UIAlertController(title: "Location Not Supported", message: "SCIOH currently works in Montréal. Stay with us though - we're always working on expanding!", preferredStyle: UIAlertControllerStyle.alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default, handler: nil))
+                        let alertController = UIAlertController(title: "Location Not Supported", message: "SCIOH currently works in Montréal. Stay with us though - we're always working on expanding!", preferredStyle: UIAlertController.Style.alert)
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                     } else {
                         print("The user is in Montréal.")
@@ -163,15 +163,15 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
         mapView.deselectAnnotation(annotation, animated: true)
-        print("The user tapped on \((annotation.title)!)'s annotation!")
+        print("The user tapped on \(annotation.title as Optional)'s annotation!")
         
         // TODO: Show venue attendees in annotation.
         
         let venueID = annotation.title??.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
         
-        self.ref.child("Test/\(venueID!)/attendees").observe(FIRDataEventType.value, with: ({ (snapshot) in
-            for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
-                print("User \(child.key) is currently going HARD at \(annotation.title).")
+        self.ref.child("Test/\(venueID!)/attendees").observe(DataEventType.value, with: ({ (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
+                print("User \(child.key) is currently going HARD at \(annotation.title as Optional).")
             }
         }))
         
@@ -186,7 +186,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     }
     
     @IBAction func LogOutButtonTapped(_ sender: AnyObject) {
-        try! FIRAuth.auth()!.signOut()
+        try! Auth.auth().signOut()
         
         UserDefaults.standard.setValue(nil, forKey: "uid")
         
@@ -197,8 +197,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     }
     
     func updateMap() {
-        self.ref.child("Test").observe(FIRDataEventType.value, with: ({ (snapshot) in
-            for child in snapshot.children.allObjects as! [FIRDataSnapshot] {
+        self.ref.child("Test").observe(DataEventType.value, with: ({ (snapshot) in
+            for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let childDict = child.value as! [String : AnyObject]
                 
                 let annotation = MGLPointAnnotation()
@@ -219,7 +219,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
                 
                 if(annotation.title != nil && (childDict["l"]) != nil && annotation.subtitle != nil) {
                     self.mapView.addAnnotation(annotation)
-                    print("an annotation was added for \(annotation.title) at lat:\(annotation.coordinate.latitude) long:\(annotation.coordinate.longitude)")
+                    print("an annotation was added for \(annotation.title as Optional) at lat:\(annotation.coordinate.latitude) long:\(annotation.coordinate.longitude)")
                 }
             }
         }))
@@ -237,7 +237,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
                 let image = UIImage(data: data!)!
                 annotationImage = MGLAnnotationImage(image: maskRoundedImage(image: image, radius: 30.0) , reuseIdentifier: "\(annotation.coordinate.latitude)")
             } catch {
-                print("An image could not be found at URL \(annotation.subtitle) for \(annotation.title).")
+                print("An image could not be found at URL \(annotation.subtitle as Optional) for \(annotation.title as Optional).")
             }
         }
         
@@ -265,7 +265,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     
         print("the user has moved a bit.")
         
-        circleQuery.center = locationManager.location
+        circleQuery.center = locationManager.location!
         
 //        locationManager.requestState(for: CLCircularRegion(center: CLLocationCoordinate2D(latitude: 45.514372, longitude: -73.573364), radius: 50.0, identifier: "apt200"))
         
@@ -337,7 +337,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         }
     }
     
-    func userIsIdle(_ timer: Timer) {
+    @objc func userIsIdle(_ timer: Timer) {
         let idleVenue = timer.userInfo as! String
         print("the user has been at venue \(idleVenue) for a little while.")
         self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/location").setValue(idleVenue)

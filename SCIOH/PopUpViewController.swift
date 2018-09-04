@@ -12,7 +12,7 @@ import Firebase
 
 class PopUpViewController:UIViewController {
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     
     @IBOutlet var popUpView: UIView!
     
@@ -37,11 +37,11 @@ class PopUpViewController:UIViewController {
         
         let venueID = atitle.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
         
-        self.ref.child("Test/\(venueID)/attendees").observe(FIRDataEventType.value, with: ({ (snapshot) in
+        self.ref.child("Test/\(venueID)/attendees").observe(DataEventType.value, with: ({ (snapshot) in
             self.numFollowingLabel.text = "\(snapshot.childrenCount) Live"
         }))
         
-        self.ref.child("Test/\(venueID)/images").observe(FIRDataEventType.value, with: ({ (snapshot) in
+        self.ref.child("Test/\(venueID)/images").observe(DataEventType.value, with: ({ (snapshot) in
             self.numPhotosLabel.text = "\(snapshot.childrenCount) Photos"
         }))
         

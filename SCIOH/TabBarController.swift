@@ -12,8 +12,8 @@ import Firebase
 
 class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    let storageRef = FIRStorage.storage().reference()
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference()
+    let storageRef = Storage.storage().reference()
+    var ref : DatabaseReference! = Database.database().reference()
     
     override func viewDidLoad() {
         
@@ -45,10 +45,10 @@ class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UIN
         //TODO: Embed camera view into navigation controller
         
         if item == (self.tabBar.items! as [UITabBarItem])[2] {
-            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
+            if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
                 let imagePicker = UIImagePickerController()
                 imagePicker.delegate = self
-                imagePicker.sourceType = UIImagePickerControllerSourceType.camera;
+                imagePicker.sourceType = UIImagePickerController.SourceType.camera;
                 imagePicker.allowsEditing = false
                 self.modalPresentationStyle = .currentContext
                 self.present(imagePicker, animated: true, completion: nil)
@@ -60,9 +60,12 @@ class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UIN
         dismiss(animated: true, completion: nil)
     }
     
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+// Local variable inserted by Swift 4.2 migrator.
+let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+
         print("did finish taking pic")
-        if let pickedImage = info[UIImagePickerControllerOriginalImage]{
+        if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]{
             // Create a reference to the file you want to upload
             
             print("finding user's location")
@@ -82,27 +85,30 @@ class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UIN
                     print("uploading photo to \(location)...")
                     
                     var data = Data()
-                    data = UIImageJPEGRepresentation(pickedImage as! UIImage, 0.8)!
+                    data = (pickedImage as! UIImage).jpegData(compressionQuality: 0.8)!
                     
                     let uuid = UUID().uuidString
                     
                     let imageRef = self.storageRef.child("images/\(location)").child("\(uuid).jpg")
                     
-                    let metaData = FIRStorageMetadata()
+                    let metaData = StorageMetadata()
                     metaData.contentType = "image/jpg"
                     
                     // Upload the file
-                    _ = imageRef.put(data, metadata: metaData) { metaData, error in
+                    _ = imageRef.putData(data, metadata: metaData) { (metaData, error) in
                         if error != nil {
                             print("Uh-oh, an error occurred while uploading the image!")
                         } else {
-                            // Metadata contains file metadata such as size, content-type, and download URL.
-                            let downloadURL = metaData!.downloadURL()!.absoluteString
-                            print("Success! The image can be found at \(downloadURL).")
-                            
-                            self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/images/\(uuid)").setValue(downloadURL)
-                            self.ref.child("Test/\(location)/images/\(uuid)").setValue(downloadURL)
-                            
+                            // Metadata contains file metadata such as size, content-type.
+                            imageRef.downloadURL{ (url, error) in
+                                guard let downloadURL = url else {
+                                    print("Uh-oh, an error occured while retrieving the image's download URL!")
+                                    return
+                                }
+                                print("Success! The image can be found at \(downloadURL).")
+                                self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/images/\(uuid)").setValue(downloadURL)
+                                self.ref.child("Test/\(location)/images/\(uuid)").setValue(downloadURL)
+                            }
                             
                             //TODO: Add image URL to users/USERID/images/uuid and Test/VenueID/images/uuid
                         }
@@ -136,4 +142,14 @@ class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UIN
         return randomString
     }
     
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKeyDictionary(_ input: [UIImagePickerController.InfoKey: Any]) -> [String: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map {key, value in (key.rawValue, value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromUIImagePickerControllerInfoKey(_ input: UIImagePickerController.InfoKey) -> String {
+	return input.rawValue
 }

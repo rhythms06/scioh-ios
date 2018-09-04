@@ -29,15 +29,15 @@ class LoginPageViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginPageViewController.keyboardWillShow(_:)), name:NSNotification.Name.UIKeyboardWillShow, object: nil);
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginPageViewController.keyboardWillHide(_:)), name:NSNotification.Name.UIKeyboardWillHide, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginPageViewController.keyboardWillShow(_:)), name:UIResponder.keyboardWillShowNotification, object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginPageViewController.keyboardWillHide(_:)), name:UIResponder.keyboardWillHideNotification, object: nil);
         
         emailTextField.delegate = self
         passwordtextField.delegate = self
         
-        emailTextField.addTarget(self, action: #selector(LoginPageViewController.emailWasTapped(_:)), for: UIControlEvents.touchDown)
+        emailTextField.addTarget(self, action: #selector(LoginPageViewController.emailWasTapped(_:)), for: UIControl.Event.touchDown)
         
-        passwordtextField.addTarget(self, action: #selector(LoginPageViewController.passWasTapped(_:)), for: UIControlEvents.touchDown)
+        passwordtextField.addTarget(self, action: #selector(LoginPageViewController.passWasTapped(_:)), for: UIControl.Event.touchDown)
         
         
 //        if (NSUserDefaults.standardUserDefaults().valueForKey("uid") != nil) && (DataService.dataService.CURRENT_USER_REF.authData != nil) {
@@ -67,23 +67,23 @@ class LoginPageViewController: UIViewController, UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func emailWasTapped(_ textField: UITextField) {
+    @objc func emailWasTapped(_ textField: UITextField) {
         // user touch field
         emailTapped = true
     }
     
-    func passWasTapped(_ textField: UITextField) {
+    @objc func passWasTapped(_ textField: UITextField) {
         // user touch field
         passTapped = true
     }
     
-    func keyboardWillShow(_ sender: Notification) {
+    @objc func keyboardWillShow(_ sender: Notification) {
         if(!keyboardShowing) {
             
             NSLayoutConstraint.activate([keyboardConstraint, keyboardConstraint2])
             
             var info = (sender as NSNotification).userInfo!
-            let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+            let keyboardFrame: CGRect = (info[UIResponder.keyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
 
             UIView.animate(withDuration: 0.1, animations: { () -> Void in
                 if(self.emailTapped) {
@@ -100,7 +100,7 @@ class LoginPageViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func keyboardWillHide(_ sender: Notification) {
+    @objc func keyboardWillHide(_ sender: Notification) {
         if(keyboardShowing) {
             NSLayoutConstraint.deactivate([keyboardConstraint, keyboardConstraint2])
             keyboardShowing = false
@@ -118,17 +118,17 @@ class LoginPageViewController: UIViewController, UITextFieldDelegate {
         
         if ((email != "" ) && (password != "")) {
             
-            FIRAuth.auth()?.signIn(withEmail: email!, password: password!) { (user, error) in
+            Auth.auth().signIn(withEmail: email!, password: password!) { (user, error) in
                 if error != nil {
-                    let alert = UIAlertController(title: "Error", message: "Incorrect email address and/or password.", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Error", message: "Incorrect email address and/or password.", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                     
                     //                    self.passwordtextField.text = ""
                 }
                 else {
-                    print("\(user)")
-                    UserDefaults.standard.setValue(user!.uid, forKey: "uid")
+                    print(user as Any)
+                    UserDefaults.standard.setValue(Auth.auth().currentUser?.uid, forKey: "uid")
                     self.performSegue(withIdentifier: "AlreadyLoggedIn", sender: self)
                 }
 
@@ -152,8 +152,8 @@ class LoginPageViewController: UIViewController, UITextFieldDelegate {
             
         }
         else {
-            let alert = UIAlertController(title: "Error", message: "Please enter your email/username and password.", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Error", message: "Please enter your email/username and password.", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         

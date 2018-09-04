@@ -1,52 +1,43 @@
 PODS:
-  - Alamofire (4.4.0)
-  - Firebase/Auth (3.14.0):
-    - Firebase/Core
-    - FirebaseAuth (= 3.1.1)
-  - Firebase/Core (3.14.0):
-    - FirebaseAnalytics (= 3.7.0)
-    - FirebaseCore (= 3.5.1)
-  - Firebase/Database (3.14.0):
-    - Firebase/Core
-    - FirebaseDatabase (= 3.1.2)
-  - Firebase/Storage (3.14.0):
-    - Firebase/Core
-    - FirebaseStorage (= 1.1.0)
-  - FirebaseAnalytics (3.7.0):
-    - FirebaseCore (~> 3.5)
-    - FirebaseInstanceID (~> 1.0)
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseAuth (3.1.1):
-    - FirebaseAnalytics (~> 3.7)
-    - "GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)"
+  - Alamofire (4.7.3)
+  - Firebase/Auth (5.7.0):
+    - Firebase/CoreOnly
+    - FirebaseAuth (= 5.0.3)
+  - Firebase/CoreOnly (5.7.0):
+    - FirebaseCore (= 5.1.2)
+  - Firebase/Database (5.7.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (= 5.0.2)
+  - Firebase/Storage (5.7.0):
+    - Firebase/CoreOnly
+    - FirebaseStorage (= 3.0.1)
+  - FirebaseAuth (5.0.3):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 5.0)
+    - GoogleUtilities/Environment (~> 5.2)
     - GTMSessionFetcher/Core (~> 1.1)
-  - FirebaseCore (3.5.1):
-    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
-  - FirebaseDatabase (3.1.2):
-    - FirebaseAnalytics (~> 3.7)
-  - FirebaseInstanceID (1.0.9)
-  - FirebaseStorage (1.1.0):
-    - FirebaseAnalytics (~> 3.7)
+  - FirebaseAuthInterop (1.0.0)
+  - FirebaseCore (5.1.2):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseDatabase (5.0.2):
+    - FirebaseCore (~> 5.0)
+    - leveldb-library (~> 1.18)
+  - FirebaseStorage (3.0.1):
+    - FirebaseCore (~> 5.0)
     - GTMSessionFetcher/Core (~> 1.1)
-  - GeoFire (2.0.0):
-    - Firebase/Database (~> 3.2)
-  - GoogleMaps (2.2.0):
-    - GoogleMaps/Maps (= 2.2.0)
-  - GoogleMaps/Base (2.2.0)
-  - GoogleMaps/Maps (2.2.0):
+  - GeoFire (3.0.0):
+    - Firebase/Database (~> 5.0)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
     - GoogleMaps/Base
-  - GoogleToolboxForMac/DebugUtils (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - "GoogleToolboxForMac/NSData+zlib (2.1.1)":
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - "GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1)":
-    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-    - "GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)"
-  - "GoogleToolboxForMac/NSString+URLArguments (2.1.1)"
-  - GTMSessionFetcher/Core (1.1.8)
-  - SwiftyJSON (3.1.4)
+  - GoogleUtilities/Environment (5.2.2)
+  - GoogleUtilities/Logger (5.2.2):
+    - GoogleUtilities/Environment
+  - GTMSessionFetcher/Core (1.2.0)
+  - leveldb-library (1.20)
+  - SwiftyJSON (4.1.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
@@ -61,15 +52,15 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Alamofire
     - Firebase
-    - FirebaseAnalytics
     - FirebaseAuth
+    - FirebaseAuthInterop
     - FirebaseCore
     - FirebaseDatabase
-    - FirebaseInstanceID
     - FirebaseStorage
     - GoogleMaps
-    - GoogleToolboxForMac
+    - GoogleUtilities
     - GTMSessionFetcher
+    - leveldb-library
     - SwiftyJSON
 
 EXTERNAL SOURCES:
@@ -78,23 +69,23 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   GeoFire:
-    :commit: dbb8d193f5ee1371837800d0502bd29cba779da4
+    :commit: 7bc124db5d7c428bffe7ee4bd10ea9ad55f54523
     :git: https://github.com/firebase/geofire-objc.git
 
 SPEC CHECKSUMS:
-  Alamofire: dc44b1600b800eb63da6a19039a0083d62a6a62d
-  Firebase: 85a581fb04e44f63ae9f4fbc8d6dabf4a4c18653
-  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
-  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
-  FirebaseCore: 225d40532489835a034b8f4e2c9c87fbf4f615a2
-  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
-  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
-  FirebaseStorage: a5c55b23741a49a72af8f30f95b3bb5ddbeda12d
-  GeoFire: ef73103b88eb026c27212c40ea16757d6ad362ea
-  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
-  GTMSessionFetcher: 6f8d8b28b7e345549ac471071608170b31cb4977
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Firebase: 734a4f92957aa6c40e7ae3fda3d9359e1890aa87
+  FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
+  FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
+  FirebaseCore: 3a97432acb324b439fbed338e642f9cbb516a63d
+  FirebaseDatabase: 27be5ac5bc75e0b17537b2bbfada8258addcc8cd
+  FirebaseStorage: 43f823b96b72a08539eba21a7de043348a69d4c6
+  GeoFire: e3ae6f4be3f2466c3467ef6c1c203db3af935c59
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GoogleUtilities: 06b66f9567769a7958db20a92f0128b2843e49d5
+  GTMSessionFetcher: 0c4baf0a73acd0041bf9f71ea018deedab5ea84e
+  leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
 
 PODFILE CHECKSUM: 502a26104486b06976fcc401d3fcaf37fcd23f1c
 

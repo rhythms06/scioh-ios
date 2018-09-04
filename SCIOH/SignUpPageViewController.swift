@@ -16,7 +16,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     
-    var ref : FIRDatabaseReference! = FIRDatabase.database().reference() //reference to database
+    var ref : DatabaseReference! = Database.database().reference() //reference to database
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
         
         if ((username != "") && (email != "") && (password != "") && (confirmed == password)) {
             
-            FIRAuth.auth()?.createUser(withEmail: email!, password: password!, completion: { (user, error) in
+            Auth.auth().createUser(withEmail: email!, password: password!, completion: { (user, error) in
                 if error != nil {
                 
                     let msg = "Either your email isn't correct, your password is too short, you aren't connected to the internet, or something else is broken. Sorry about that :P"
@@ -63,8 +63,8 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
 //                        msg = "Something (\(error._userInfo?[FIRAuthErrorNameKey] as? String)) went wrong."
 //                    }
                     
-                    let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Error", message: msg, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertAction.Style.default, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                         
 //                    }
@@ -105,25 +105,25 @@ class SignUpPageViewController: UIViewController, UITextFieldDelegate {
 
                     let toBeDatabased : Dictionary<String, Any> = ["username": String(describing: username!), "email": String(describing: email!), "fullname": ""]
                     
-                    self.ref.child("users").child(user!.uid).setValue(toBeDatabased)
+                    self.ref.child("users").child((Auth.auth().currentUser?.uid)!).setValue(toBeDatabased)
                     
                     
-                    let alert = UIAlertController(title: "Success", message: "Welcome to SCIOH!", preferredStyle: UIAlertControllerStyle.alert)
-                    alert.addAction(UIAlertAction(title: "Let's Go", style: UIAlertActionStyle.default, handler: nil))
+                    let alert = UIAlertController(title: "Success", message: "Welcome to SCIOH!", preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Let's Go", style: UIAlertAction.Style.default, handler: nil))
                         
     //                self.presentViewController(alert, animated: true, completion: self.goToHome)
                     
                     self.performSegue(withIdentifier: "AccountCreated", sender: self)
                         
-                    UserDefaults.standard.setValue(user?.uid, forKey: "uid")
+                    UserDefaults.standard.setValue(Auth.auth().currentUser?.uid, forKey: "uid")
                 
                  }
              })
         }
         else {
             
-            let alert = UIAlertController(title: "Error", message: "Your inputs are invalid, please enter valid information", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+            let alert = UIAlertController(title: "Error", message: "Your inputs are invalid, please enter valid information", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
         

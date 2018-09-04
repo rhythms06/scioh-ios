@@ -15,14 +15,14 @@ class ResetPasswordViewController: UIViewController {
         
         let email = emailTextField.text
         
-        FIRAuth.auth()?.sendPasswordReset(withEmail: email!) { error in
+        Auth.auth().sendPasswordReset(withEmail: email!) { error in
             if (error != nil) {
-                let alert = UIAlertController(title: "Error", message: "email was incorrect", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: "Error", message: "email was incorrect", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: self.goToLogin)
             } else {
-                let alert = UIAlertController(title: "Email Sent", message: "Refer to the email for further instructions", preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: "ok", style: UIAlertActionStyle.default, handler: nil))
+                let alert = UIAlertController(title: "Email Sent", message: "Refer to the email for further instructions", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "ok", style: UIAlertAction.Style.default, handler: nil))
                 self.present(alert, animated: true, completion: nil)
                 
 
