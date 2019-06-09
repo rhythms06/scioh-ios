@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16E183b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -20,14 +20,14 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="6JK-Mj-c8X">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IvI-j9-1jt">
-                    <rect key="frame" x="40" y="104" width="295" height="459"/>
+                    <rect key="frame" x="-77.666666666666671" y="156" width="300.33333333333331" height="500"/>
                     <subviews>
-                        <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="close popup" translatesAutoresizingMaskIntoConstraints="NO" id="a2f-cD-Q9M">
-                            <rect key="frame" x="0.0" y="0.0" width="295" height="44"/>
+                        <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" backIndicatorImage="close popup" backIndicatorTransitionMaskImage="close popup" translatesAutoresizingMaskIntoConstraints="NO" id="a2f-cD-Q9M">
+                            <rect key="frame" x="0.0" y="0.0" width="300.33333333333331" height="44"/>
                             <color key="barTintColor" red="0.034980755299999999" green="0.22287347909999999" blue="0.41387742760000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <items>
                                 <navigationItem title="Title" id="2wC-yc-vl7">
@@ -41,10 +41,9 @@
                             </items>
                         </navigationBar>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vFm-X5-QTj">
-                            <rect key="frame" x="0.0" y="44" width="148" height="64"/>
+                            <rect key="frame" x="0.0" y="44" width="150.33333333333334" height="64"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="64" id="FJp-1B-ZYc"/>
-                                <constraint firstAttribute="width" constant="148" id="N4W-5X-o1N"/>
                             </constraints>
                             <state key="normal" image="friends">
                                 <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -52,19 +51,19 @@
                             <state key="selected" image="friends (s)"/>
                         </button>
                         <button opaque="NO" contentMode="redraw" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ofw-dP-RGa">
-                            <rect key="frame" x="148" y="44" width="147" height="64"/>
+                            <rect key="frame" x="150.33333333333334" y="44" width="150.00000000000003" height="64"/>
                             <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="3"/>
                             <state key="normal" image="photos"/>
                             <state key="selected" image="photos (s)"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Live" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="her-b6-1Un">
-                            <rect key="frame" x="0.0" y="116" width="148" height="15"/>
+                            <rect key="frame" x="0.0" y="116" width="150.33333333333334" height="15"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Photos" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGE-k6-9TJ">
-                            <rect key="frame" x="148" y="116" width="147" height="15"/>
+                            <rect key="frame" x="150.33333333333334" y="116" width="150.00000000000003" height="15"/>
                             <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -72,43 +71,40 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="a2f-cD-Q9M" firstAttribute="trailing" secondItem="xGE-k6-9TJ" secondAttribute="trailing" id="0T3-mQ-RgN"/>
+                        <constraint firstItem="a2f-cD-Q9M" firstAttribute="trailing" secondItem="IvI-j9-1jt" secondAttribute="trailing" id="0T3-mQ-RgN"/>
                         <constraint firstItem="a2f-cD-Q9M" firstAttribute="leading" secondItem="IvI-j9-1jt" secondAttribute="leading" id="1Bh-fV-Ofj"/>
-                        <constraint firstItem="a2f-cD-Q9M" firstAttribute="trailing" secondItem="ofw-dP-RGa" secondAttribute="trailing" id="1yZ-2M-ccF"/>
+                        <constraint firstItem="her-b6-1Un" firstAttribute="leading" secondItem="vFm-X5-QTj" secondAttribute="leading" id="1yR-nW-B1W"/>
+                        <constraint firstItem="xGE-k6-9TJ" firstAttribute="trailing" secondItem="a2f-cD-Q9M" secondAttribute="trailing" id="65U-A2-vSx"/>
+                        <constraint firstItem="ofw-dP-RGa" firstAttribute="trailing" secondItem="a2f-cD-Q9M" secondAttribute="trailing" id="EhS-f1-Yef"/>
                         <constraint firstItem="her-b6-1Un" firstAttribute="top" secondItem="vFm-X5-QTj" secondAttribute="bottom" constant="8" symbolic="YES" id="H4B-e3-Q29"/>
                         <constraint firstItem="vFm-X5-QTj" firstAttribute="leading" secondItem="a2f-cD-Q9M" secondAttribute="leading" id="IFD-Ya-buV"/>
                         <constraint firstItem="vFm-X5-QTj" firstAttribute="bottom" secondItem="ofw-dP-RGa" secondAttribute="bottom" id="IIp-BO-kGm"/>
-                        <constraint firstItem="xGE-k6-9TJ" firstAttribute="leading" secondItem="her-b6-1Un" secondAttribute="trailing" id="LHA-9w-pso"/>
+                        <constraint firstItem="xGE-k6-9TJ" firstAttribute="leading" secondItem="ofw-dP-RGa" secondAttribute="leading" id="Li6-bi-0Ud"/>
                         <constraint firstItem="xGE-k6-9TJ" firstAttribute="top" secondItem="ofw-dP-RGa" secondAttribute="bottom" constant="8" symbolic="YES" id="Pzh-XZ-jvx"/>
-                        <constraint firstItem="vFm-X5-QTj" firstAttribute="leading" secondItem="her-b6-1Un" secondAttribute="leading" id="VG2-UL-mh7"/>
+                        <constraint firstAttribute="height" constant="500" id="SLE-Nw-4vY"/>
                         <constraint firstItem="ofw-dP-RGa" firstAttribute="top" secondItem="a2f-cD-Q9M" secondAttribute="bottom" id="Yvk-dI-9Fx"/>
-                        <constraint firstItem="vFm-X5-QTj" firstAttribute="trailing" secondItem="her-b6-1Un" secondAttribute="trailing" id="Zka-4s-KbC"/>
-                        <constraint firstItem="ofw-dP-RGa" firstAttribute="leading" secondItem="vFm-X5-QTj" secondAttribute="trailing" id="a6S-tJ-Xm5"/>
-                        <constraint firstItem="vFm-X5-QTj" firstAttribute="top" secondItem="ofw-dP-RGa" secondAttribute="top" id="auS-G9-JEm"/>
+                        <constraint firstItem="ofw-dP-RGa" firstAttribute="leading" secondItem="a2f-cD-Q9M" secondAttribute="centerX" id="a6S-tJ-Xm5"/>
+                        <constraint firstItem="vFm-X5-QTj" firstAttribute="top" secondItem="a2f-cD-Q9M" secondAttribute="bottom" id="auS-G9-JEm"/>
                         <constraint firstItem="a2f-cD-Q9M" firstAttribute="top" secondItem="IvI-j9-1jt" secondAttribute="top" id="efy-Ha-qns"/>
-                        <constraint firstAttribute="trailing" secondItem="a2f-cD-Q9M" secondAttribute="trailing" id="t6i-bi-hja"/>
+                        <constraint firstItem="vFm-X5-QTj" firstAttribute="trailing" secondItem="a2f-cD-Q9M" secondAttribute="centerX" id="jCY-SY-cdd"/>
+                        <constraint firstAttribute="width" constant="300" id="ouS-0q-ce1"/>
+                        <constraint firstItem="her-b6-1Un" firstAttribute="trailing" secondItem="vFm-X5-QTj" secondAttribute="trailing" id="ySR-3F-0ME"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="IvI-j9-1jt" secondAttribute="bottom" constant="104" id="6ne-Q1-L8R"/>
-                <constraint firstItem="IvI-j9-1jt" firstAttribute="centerX" secondItem="6JK-Mj-c8X" secondAttribute="centerX" id="8AD-9X-z3t"/>
+                <constraint firstItem="IvI-j9-1jt" firstAttribute="centerX" secondItem="6JK-Mj-c8X" secondAttribute="centerX" constant="-115" id="14P-i4-ynw"/>
                 <constraint firstItem="IvI-j9-1jt" firstAttribute="centerY" secondItem="6JK-Mj-c8X" secondAttribute="centerY" id="8KS-Yc-57F"/>
-                <constraint firstItem="IvI-j9-1jt" firstAttribute="leading" secondItem="6JK-Mj-c8X" secondAttribute="leading" constant="40" id="S2A-RJ-Zd1"/>
-                <constraint firstAttribute="trailing" secondItem="IvI-j9-1jt" secondAttribute="trailing" constant="40" id="iQS-YA-Xrr"/>
             </constraints>
-            <point key="canvasLocation" x="97.5" y="54.5"/>
+            <point key="canvasLocation" x="97.101449275362327" y="54.241071428571423"/>
         </view>
-        <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="jc6-kD-dX1">
-            <point key="canvasLocation" x="595" y="55"/>
-        </pageViewController>
     </objects>
     <resources>
-        <image name="close popup" width="17" height="16"/>
-        <image name="friends" width="45" height="49"/>
-        <image name="friends (s)" width="43" height="47"/>
-        <image name="photos" width="52" height="43"/>
-        <image name="photos (s)" width="52" height="43"/>
+        <image name="close popup" width="11.333333015441895" height="11"/>
+        <image name="friends" width="30" height="32.666667938232422"/>
+        <image name="friends (s)" width="28.666666030883789" height="31.333333969116211"/>
+        <image name="photos" width="34.666667938232422" height="28.666666030883789"/>
+        <image name="photos (s)" width="34.666667938232422" height="28.666666030883789"/>
     </resources>
 </document>

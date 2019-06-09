@@ -16,8 +16,6 @@
 		2E74468C1CFFAC250093FE48 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E74468B1CFFAC250093FE48 /* TabBarController.swift */; };
 		2E77F91A1DEAB41300D158BF /* PopUpView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2E77F9191DEAB41300D158BF /* PopUpView.xib */; };
 		2E77F91C1DEAECF900D158BF /* CustomPointAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E77F91B1DEAECF900D158BF /* CustomPointAnnotation.swift */; };
-		2E85E0541E3BDDDB00D62F8E /* Mapbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */; };
-		2E85E0551E3BDDDB00D62F8E /* Mapbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		2E8E03BE1E1454A2000D680F /* ExtProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E8E03BD1E1454A2000D680F /* ExtProfileViewController.swift */; };
 		2E9DDEC51DEA4B03002C6A2A /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9DDEC41DEA4B03002C6A2A /* PopUpViewController.swift */; };
 		2EEC16B91E760F9A00137442 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2EEC16B81E760F9A00137442 /* GoogleService-Info.plist */; };
@@ -44,7 +42,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				2E85E0551E3BDDDB00D62F8E /* Mapbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,7 +57,6 @@
 		2E74468B1CFFAC250093FE48 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2E77F9191DEAB41300D158BF /* PopUpView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PopUpView.xib; sourceTree = "<group>"; };
 		2E77F91B1DEAECF900D158BF /* CustomPointAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomPointAnnotation.swift; sourceTree = "<group>"; };
-		2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mapbox.framework; sourceTree = "<group>"; };
 		2E8E03BD1E1454A2000D680F /* ExtProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtProfileViewController.swift; sourceTree = "<group>"; };
 		2E9DDEC41DEA4B03002C6A2A /* PopUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		2EC8AA061D807C4800923C06 /* SCIOH.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SCIOH.entitlements; sourceTree = "<group>"; };
@@ -93,7 +89,6 @@
 			files = (
 				A7637B391C6FED8300D6F36B /* MapKit.framework in Frameworks */,
 				883CA64514D2CBEBF06DE470 /* Pods_SCIOH.framework in Frameworks */,
-				2E85E0541E3BDDDB00D62F8E /* Mapbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +107,6 @@
 			isa = PBXGroup;
 			children = (
 				A7637B381C6FED8300D6F36B /* MapKit.framework */,
-				2E85E0531E3BDDDB00D62F8E /* Mapbox.framework */,
 				2EEC16B81E760F9A00137442 /* GoogleService-Info.plist */,
 				A7637B251C6FEC1000D6F36B /* SCIOH */,
 				A7637B241C6FEC1000D6F36B /* Products */,
@@ -202,13 +196,13 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Romain Boudet";
 				TargetAttributes = {
 					A7637B221C6FEC1000D6F36B = {
 						CreatedOnToolsVersion = 7.1.1;
 						DevelopmentTeam = W2H68UHF89;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -226,7 +220,7 @@
 			};
 			buildConfigurationList = A7637B1E1C6FEC1000D6F36B /* Build configuration list for PBXProject "SCIOH" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -264,7 +258,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SCIOH/Pods-SCIOH-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -273,7 +267,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCIOH/Pods-SCIOH-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		1ABE107824E741CB631A4677 /* [CP] Embed Pods Frameworks */ = {
@@ -282,24 +276,34 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SCIOH/Pods-SCIOH-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/CD548FF3-ECB4-31D0-8E4F-AE55F70E287F.bcsymbolmap",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/70E1902C-569B-3192-A297-3622F9745C20.bcsymbolmap",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/CD548FF3-ECB4-31D0-8E4F-AE55F70E287F.bcsymbolmap",
+				"${BUILT_PRODUCTS_DIR}/70E1902C-569B-3192-A297-3622F9745C20.bcsymbolmap",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SCIOH/Pods-SCIOH-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SCIOH/Pods-SCIOH-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2E85E0561E3BDE0100D62F8E /* ShellScript */ = {
@@ -439,6 +443,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -489,6 +494,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -502,18 +508,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = W2H68UHF89;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/Firebase",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = SCIOH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.Luna;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.scioh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -526,19 +527,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = W2H68UHF89;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Pods/Firebase",
-					"$(PROJECT_DIR)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)/**";
 				INFOPLIST_FILE = SCIOH/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.app.Luna;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.scioh;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

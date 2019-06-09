@@ -11,15 +11,10 @@ import UIKit
 import Firebase
 
 class PopUpViewController:UIViewController {
-    
     var ref : DatabaseReference! = Database.database().reference()
-    
     @IBOutlet var popUpView: UIView!
-    
     @IBOutlet var popUpBar: UINavigationBar!
-    
     @IBOutlet var numFollowingLabel: UILabel!
-    
     @IBOutlet var numPhotosLabel: UILabel!
     
     override func viewDidLoad() {
@@ -28,7 +23,7 @@ class PopUpViewController:UIViewController {
         self.popUpView.layer.cornerRadius = 5
         self.popUpView.layer.shadowOpacity = 0.8
         self.popUpView.layer.shadowOffset = CGSize.init(width: 0.0, height: 0.0)
-        self.popUpView.frame.origin.y = UIScreen.main.bounds.size.height
+        self.view.frame.origin.y = UIScreen.main.bounds.size.height
     }
     
     func showInView(aView: UIView!, withTitle atitle: String!, animated: Bool) {
@@ -52,8 +47,12 @@ class PopUpViewController:UIViewController {
     
     func showAnimate() {
         UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseOut, animations: {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-            self.popUpView.frame.origin.y -= (UIScreen.main.bounds.size.height)
+            // TODO: Currently, the background's dimensions are not calculated correctly
+            // and UIColor.black.withAlphaComponent(0.6) does not fill the entire screen.
+            // Fix this, and once it's fixed, undo the workaround used in PopUpView.xib!
+            
+//             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.6)
+            self.view.frame.origin.y -= (UIScreen.main.bounds.size.height - 85)
         }, completion: { finished in
             print("A popUpView suddenly appeared!")
         })
@@ -61,8 +60,12 @@ class PopUpViewController:UIViewController {
     
     func hideAnimate() {
         UIView.animate(withDuration: 0.6, delay: 0.0, options: .curveEaseIn, animations: {
-            self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-            self.popUpView.frame.origin.y += UIScreen.main.bounds.size.height
+            // TODO: Currently, the background's dimensions are not calculated correctly
+            // and UIColor.black.withAlphaComponent(0.6) does not fill the entire screen.
+            // Fix this, and once it's fixed, undo the workaround used in PopUpView.xib!
+            
+//             self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+            self.view.frame.origin.y += UIScreen.main.bounds.size.height + 85
         }, completion: { finished in
             self.view.removeFromSuperview()
             print("A popUpView was dismissed!")
@@ -75,6 +78,8 @@ class PopUpViewController:UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for tap in (event?.allTouches)! {
+            // TODO: Make it so that touching the popup's title bar
+            // does not dismiss the popup view.
             if tap.view == self.popUpView {
                 print("The popUpView was tapped.")
             } else {

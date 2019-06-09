@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pJF-Fe-jfU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pJF-Fe-jfU">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.9"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,8 +32,8 @@
                         <constraints>
                             <constraint firstItem="zl9-HV-9Wb" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="3mh-6H-0LC"/>
                             <constraint firstItem="zl9-HV-9Wb" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="egt-n3-vNi"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zl9-HV-9Wb" secondAttribute="bottom" id="gae-Jr-mzf"/>
-                            <constraint firstAttribute="trailing" secondItem="zl9-HV-9Wb" secondAttribute="trailing" id="s0j-S2-J9d"/>
+                            <constraint firstItem="zl9-HV-9Wb" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="gae-Jr-mzf"/>
+                            <constraint firstItem="zl9-HV-9Wb" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="s0j-S2-J9d"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="SCIOH" id="auv-Cx-NUU">
@@ -337,7 +337,7 @@
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SCIOH logo2" translatesAutoresizingMaskIntoConstraints="NO" id="gS9-tt-egN">
-                                <rect key="frame" x="167" y="383.66666666666669" width="80" height="67.333333333333314"/>
+                                <rect key="frame" x="197.33333333333334" y="435" width="19.333333333333343" height="16"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gS9-tt-egN" secondAttribute="height" multiplier="334:281" id="UxE-nd-X8d"/>
                                 </constraints>
@@ -424,41 +424,41 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password                      " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="sYV-h2-gfT">
-                                <rect key="frame" x="98" y="265.33333333333331" width="220" height="30"/>
+                                <rect key="frame" x="98" y="479" width="220" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email                                          " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jw0-zd-Neo">
-                                <rect key="frame" x="99.666666666666686" y="129.33333333333334" width="215" height="30"/>
+                                <rect key="frame" x="99.666666666666686" y="343" width="215" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="username                                   " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4tX-CJ-2fh">
-                                <rect key="frame" x="99" y="174.33333333333334" width="218" height="30"/>
+                                <rect key="frame" x="99" y="388" width="218" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password                                   " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xb8-9e-bIq">
-                                <rect key="frame" x="100" y="220.33333333333334" width="216" height="30"/>
+                                <rect key="frame" x="100" y="434" width="216" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyu-aY-fEv">
-                                <rect key="frame" x="158.66666666666666" y="336.33333333333331" width="97" height="30"/>
+                                <rect key="frame" x="158.66666666666666" y="550" width="97" height="30"/>
                                 <state key="normal" title="return to login"/>
                                 <connections>
                                     <segue destination="pJF-Fe-jfU" kind="presentation" id="G9Q-Td-mW1"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mGq-un-izG">
-                                <rect key="frame" x="180" y="305.33333333333331" width="54" height="30"/>
+                                <rect key="frame" x="180" y="519" width="54" height="30"/>
                                 <state key="normal" title="Sign Up"/>
                                 <connections>
                                     <action selector="SignUpButtonTapped:" destination="uc4-eg-bVX" eventType="touchUpInside" id="cJK-sY-7TQ"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SCIOH logo2" translatesAutoresizingMaskIntoConstraints="NO" id="4Rs-UW-hfz">
-                                <rect key="frame" x="167" y="39.999999999999993" width="80" height="67.333333333333314"/>
+                                <rect key="frame" x="40" y="40" width="334" height="281"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="4Rs-UW-hfz" secondAttribute="height" multiplier="334:281" id="kBg-t2-lXt"/>
                                 </constraints>
@@ -531,25 +531,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AnY-3k-4g9">
-                                <rect key="frame" x="152.66666666666666" y="229.33333333333334" width="108.99999999999997" height="30.000000000000028"/>
+                                <rect key="frame" x="152.66666666666666" y="443" width="108.99999999999997" height="30"/>
                                 <state key="normal" title="Reset Password"/>
                                 <connections>
                                     <action selector="ResetButtonTapped:" destination="ggo-Um-IJc" eventType="touchUpInside" id="izJ-d5-cwx"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="enter email                                 " textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mdb-Yx-0RH">
-                                <rect key="frame" x="97.666666666666686" y="159.33333333333334" width="219" height="30"/>
+                                <rect key="frame" x="97.666666666666686" y="373" width="219" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SCIOH logo2" translatesAutoresizingMaskIntoConstraints="NO" id="axR-ZB-WEm">
-                                <rect key="frame" x="167" y="29" width="80" height="67.333333333333329"/>
+                                <rect key="frame" x="40" y="29" width="334" height="281"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="axR-ZB-WEm" secondAttribute="height" multiplier="334:281" id="LTV-Pz-8ct"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LWJ-MH-g0Z">
-                                <rect key="frame" x="160.66666666666666" y="277.33333333333331" width="93" height="30"/>
+                                <rect key="frame" x="160.66666666666666" y="491" width="93" height="30"/>
                                 <state key="normal" title="Back to Login"/>
                                 <connections>
                                     <segue destination="pJF-Fe-jfU" kind="presentation" id="q9E-cm-8YY"/>
@@ -785,7 +785,7 @@
                                                 <constraint firstItem="NGE-ZO-p2i" firstAttribute="centerY" secondItem="Rhe-rk-RFW" secondAttribute="centerY" id="Bud-qB-dsa"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="NGE-ZO-p2i" secondAttribute="trailing" id="cqx-cG-LB0"/>
                                                 <constraint firstItem="NGE-ZO-p2i" firstAttribute="centerY" secondItem="j4g-tS-Hq9" secondAttribute="centerY" id="fTu-BD-3z1"/>
-                                                <constraint firstItem="NGE-ZO-p2i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="j4g-tS-Hq9" secondAttribute="trailing" constant="146" id="sv2-5r-XFb"/>
+                                                <constraint firstItem="NGE-ZO-p2i" firstAttribute="leading" relation="lessThanOrEqual" secondItem="j4g-tS-Hq9" secondAttribute="trailing" constant="146" id="sv2-5r-XFb"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -995,12 +995,12 @@
                         <color key="backgroundColor" red="0.039215686270000001" green="0.22352941179999999" blue="0.41568627450000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="top" secondItem="oGU-Bh-ekM" secondAttribute="bottom" id="24t-i3-KIt"/>
+                            <constraint firstItem="YDC-Y1-BNh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tPh-Fa-E99" secondAttribute="trailing" constant="8" symbolic="YES" id="MGI-lQ-TK7"/>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="leading" secondItem="5AO-TI-CC4" secondAttribute="trailing" id="QDf-Pv-QjO"/>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="top" secondItem="oGU-Bh-ekM" secondAttribute="bottom" id="RQp-U9-oJW"/>
                             <constraint firstItem="DRV-oW-J6A" firstAttribute="leading" secondItem="flJ-BK-EIY" secondAttribute="leadingMargin" id="SXJ-FP-j1e"/>
                             <constraint firstItem="5AO-TI-CC4" firstAttribute="top" secondItem="oGU-Bh-ekM" secondAttribute="bottom" id="SnL-AX-V97"/>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="centerX" secondItem="flJ-BK-EIY" secondAttribute="centerX" id="T5E-99-UMd"/>
-                            <constraint firstItem="YDC-Y1-BNh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DRV-oW-J6A" secondAttribute="trailing" constant="265" id="TXS-oR-Ezu"/>
                             <constraint firstItem="YDC-gl-US3" firstAttribute="leading" secondItem="tPh-Fa-E99" secondAttribute="trailing" id="VZX-iU-qF7"/>
                             <constraint firstItem="YDC-Y1-BNh" firstAttribute="trailing" secondItem="flJ-BK-EIY" secondAttribute="trailingMargin" id="aPY-Bh-c5a"/>
                             <constraint firstItem="YDC-gl-US3" firstAttribute="top" secondItem="oGU-Bh-ekM" secondAttribute="bottom" id="bFF-E1-RJo"/>
@@ -1009,6 +1009,7 @@
                             <constraint firstItem="5AO-TI-CC4" firstAttribute="leading" secondItem="flJ-BK-EIY" secondAttribute="leadingMargin" constant="10" id="k4p-8y-UJO"/>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="bottom" secondItem="YDC-gl-US3" secondAttribute="bottom" id="mIr-1s-E4M"/>
                             <constraint firstItem="YDC-gl-US3" firstAttribute="leading" secondItem="tPh-Fa-E99" secondAttribute="trailing" id="piW-nB-92A"/>
+                            <constraint firstItem="tPh-Fa-E99" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DRV-oW-J6A" secondAttribute="trailing" constant="8" symbolic="YES" id="rmI-9g-kto"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YDC-gl-US3" secondAttribute="trailing" constant="10" id="vfF-AT-lmx"/>
                             <constraint firstItem="tPh-Fa-E99" firstAttribute="bottom" secondItem="5AO-TI-CC4" secondAttribute="bottom" id="wTI-XM-FC8"/>
                             <constraint firstItem="DRV-oW-J6A" firstAttribute="top" secondItem="oGU-Bh-ekM" secondAttribute="bottom" id="xb2-ll-LSI"/>
@@ -1031,20 +1032,20 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="svA-Jr-1O9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2012" y="1324.5877061469266"/>
+            <point key="canvasLocation" x="2011.594202898551" y="1323.913043478261"/>
         </scene>
     </scenes>
     <resources>
-        <image name="Event" width="54" height="48"/>
-        <image name="Profile" width="35" height="56"/>
-        <image name="SCIOH logo2" width="80.160003662109375" height="67.44000244140625"/>
-        <image name="camera" width="56" height="45"/>
-        <image name="circle" width="198" height="198"/>
-        <image name="cup" width="42" height="54"/>
-        <image name="followers" width="34" height="45"/>
-        <image name="following" width="34" height="45"/>
-        <image name="map" width="56" height="49"/>
-        <image name="settings" width="40" height="40"/>
+        <image name="Event" width="18" height="16"/>
+        <image name="Profile" width="11.666666984558105" height="18.666666030883789"/>
+        <image name="SCIOH logo2" width="334" height="281"/>
+        <image name="camera" width="18.666666030883789" height="15"/>
+        <image name="circle" width="66" height="66"/>
+        <image name="cup" width="14" height="18"/>
+        <image name="followers" width="11.333333015441895" height="15"/>
+        <image name="following" width="11.333333015441895" height="15"/>
+        <image name="map" width="18.666666030883789" height="16.333333969116211"/>
+        <image name="settings" width="13.333333015441895" height="13.333333015441895"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="q9E-cm-8YY"/>

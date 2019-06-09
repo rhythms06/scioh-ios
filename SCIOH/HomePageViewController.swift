@@ -16,36 +16,28 @@ import Mapbox
 import GeoFire
 
 class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationManagerDelegate, MGLMapViewDelegate{
-    
-    var resultSearchController:UISearchController? = nil
-    
-    @IBOutlet var mapView: MGLMapView!
-    
-    var annotation:MGLAnnotation!
-    var localSearchRequest:MKLocalSearch.Request!
-    var localSearch:MKLocalSearch!
-    var localSearchResponse:MKLocalSearch.Response!
-    var error:NSError!
-    
+    var resultSearchController:UISearchController?
+    var annotation:MGLAnnotation?
+    var localSearchRequest:MKLocalSearch.Request?
+    var localSearch:MKLocalSearch?
+    var localSearchResponse:MKLocalSearch.Response?
+    var error:NSError?
     let locationManager = CLLocationManager()
-    
-    var popUpViewController : PopUpViewController!
-    
-    var pointAnnotation:CustomPointAnnotation!
-    var pinAnnotationView:MKPinAnnotationView!
-    
+    let popUpBundle = Bundle(for: PopUpViewController.self)
+    var pointAnnotation:CustomPointAnnotation?
+    var pinAnnotationView:MKPinAnnotationView?
     var locB = CLLocation(latitude: 0.0, longitude: 0.0)
     var locA = CLLocation(latitude: 0.0, longitude: 0.0)
-    
-    var ref : DatabaseReference! = Database.database().reference()
-    var geoFire = GeoFire.init(firebaseRef: Database.database().reference(withPath: "Test"))
-    
+    var ref : DatabaseReference? = Database.database().reference()
     var idleTimer:Timer = Timer()
-    
     var circleQuery = GFCircleQuery()
-    
     var isMonitoringRegion = false
-    
+    var annotations = [MGLAnnotation]()
+    var annotationArray = [String]()
+    // The "Test" branch of the Firebase Database contains the names, logos, and coordinates
+    // of every test venue. So, let's create a GeoFire instance at that branch.
+    var geoFire = GeoFire.init(firebaseRef: Database.database().reference(withPath: "Test"))
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -54,130 +46,122 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
-    var annotations = [MGLAnnotation]()
-    
+    @IBOutlet var mapView: MGLMapView?
     @IBAction func showSearchBar(_ sender: AnyObject) {
-        let userSearchTable = storyboard!.instantiateViewController(withIdentifier: "UserSearchTable") as! UserSearchTable
-        resultSearchController = UISearchController(searchResultsController: userSearchTable)
-        resultSearchController?.searchResultsUpdater = userSearchTable
-        resultSearchController?.hidesNavigationBarDuringPresentation = true
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        resultSearchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.none
-        present((resultSearchController)!, animated: true, completion: nil)
+        if let userSearchTable = storyboard?.instantiateViewController(withIdentifier: "UserSearchTable") as? UserSearchTable {
+            resultSearchController = UISearchController(searchResultsController: userSearchTable)
+            resultSearchController?.searchResultsUpdater = userSearchTable
+            resultSearchController?.hidesNavigationBarDuringPresentation = true
+            resultSearchController?.dimsBackgroundDuringPresentation = true
+            definesPresentationContext = true
+            resultSearchController?.searchBar.autocapitalizationType = UITextAutocapitalizationType.none
+            present((resultSearchController)!, animated: true, completion: nil)
+        } else {
+            print("Something went wrong while creating the resultSearchController.")
+        }
     }
-
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        // TODO: Create a webform for adding club locations.
         
-        //TODO: Create a webform for adding club locations.
+        // The following line can be used to manually add the location of Apt. 200:
+        // geoFire?.setLocation(CLLocation(latitude: 45.514372, longitude: -73.573364), forKey: "Apt200")
         
-//        geoFire?.setLocation(CLLocation(latitude: 45.514372, longitude: -73.573364), forKey: "Apt200")
-        
-        mapView.delegate = self
-        
+        mapView?.delegate = self
         updateMap()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         
         if(CLLocationManager.locationServicesEnabled()) {
+            // The user has allowed us to locate them.
+            // Let's update the map and start checking whether or not they're at a venue.
+            print("The user has enabled location services :)")
+            
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            self.mapView.showsUserLocation = true
-            
+            self.mapView?.showsUserLocation = true
             locationManager.startMonitoringSignificantLocationChanges()
-            
-            if(locationManager.location != nil) {
-                mapView.setCenter((locationManager.location?.coordinate)!, zoomLevel: 13, animated: true)
-            }
-            
-            print("the user has enabled location services ;)")
-            
-            circleQuery = (geoFire.query(at: locationManager.location!, withRadius: 0.5))
-            
-            _ = circleQuery.observe(.keyEntered, with: { (key, location) in
-                
-//                if(!self.isMonitoringRegion) {
-            
-                print("The user is currently near venue \(key). Start monitoring.")
-                
-                let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
-                
-                    self.locationManager.startMonitoring(for: region)
-                
-                    self.isMonitoringRegion = true
-                    print("Started monitoring \(region.identifier)")
-                
-//                } else {
-//                    print("The user appears to be near venue \(key!), but monitoring is already in effect for a different venue.")
-//                }
-                
-            })
-            
-            _ = circleQuery.observe(.keyExited, with: { (key, location) in
-                print("Key \(key) exited the search area")
-                
-                let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
-                
-                self.isMonitoringRegion = false
-                self.locationManager.stopMonitoring(for: region)
-                
-            })
 
-            let geocoder = CLGeocoder()
-            
-            if(locationManager.location != nil) {
-            
-            geocoder.reverseGeocodeLocation(locationManager.location!, completionHandler: { (placemarks, error) in
-                if error == nil && (placemarks?.count)! > 0 {
-                    let currentLocation = (placemarks?[0])! as CLPlacemark
-                    if(currentLocation.locality! != "Montréal") {
-                        let alertController = UIAlertController(title: "Location Not Supported", message: "SCIOH currently works in Montréal. Stay with us though - we're always working on expanding!", preferredStyle: UIAlertController.Style.alert)
-                        alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alertController, animated: true, completion: nil)
+            if let currentLocation = locationManager.location {
+                let circleQuery = (geoFire.query(at: currentLocation, withRadius: 0.5))
+                let currentCoordinate = currentLocation.coordinate
+                
+                mapView?.setCenter(currentCoordinate, zoomLevel: 13, animated: true)
+                
+                let geocoder = CLGeocoder()
+                geocoder.reverseGeocodeLocation(currentLocation, completionHandler: { (placemarks, error) in
+                    if error == nil {
+                        let currentPlace = (placemarks?[0]) as CLPlacemark?
+                        if(currentPlace?.locality != "Montréal") {
+                            // The user is not in Montréal.
+                            let alertController = UIAlertController(title: "Location Not Supported", message: "SCIOH currently works in Montréal. Stay with us though - we're always working on expanding!", preferredStyle: UIAlertController.Style.alert)
+                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertAction.Style.default, handler: nil))
+                            self.present(alertController, animated: true, completion: nil)
+                        } else {
+                            print("The user is in Montréal. Proceed.")
+                        }
                     } else {
-                        print("The user is in Montréal.")
+                        print(error as Any)
                     }
-                } else {
-                    print(error as Any)
-                }
-            })
-            
+                })
+                
+                _ = circleQuery.observe(.keyEntered, with: { (key, location) in
+                    print("The user is currently near venue \(key). Start monitoring.")
+                    let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
+                    self.locationManager.startMonitoring(for: region)
+                    self.isMonitoringRegion = true
+                    print("Started monitoring \(region.identifier).")
+                })
+                
+                _ = circleQuery.observe(.keyExited, with: { (key, location) in
+                    print("Key \(key) exited the search area")
+                    let region = CLCircularRegion.init(center: (location.coordinate), radius: 50.0, identifier: key)
+                    self.locationManager.stopMonitoring(for: region)
+                    self.isMonitoringRegion = false
+                })
             }
-            
         }
     }
     
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        
-//        updateMap()
-        
-        while(self.annotations.count > 20) {
-            mapView.removeAnnotation(self.annotations.first!)
-            self.annotations.remove(at: 0)
-        }
-        
+//        // To increase performance,
+//        // this loop ensures that only a certain number of venues
+//        // are shown on the map at the same time.
+//        while(self.annotations.count > 20) {
+//            if let oldestAnnotation = self.annotations.first {
+//                mapView.removeAnnotation(oldestAnnotation)
+//                self.annotations.remove(at: 0)
+//            }
+//        }
+        updateMap()
     }
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
+        
+        
+        print("The user tapped on \(String(describing: annotation.title))'s annotation!")
+        
         mapView.deselectAnnotation(annotation, animated: true)
-        print("The user tapped on \(annotation.title as Optional)'s annotation!")
         
-        // TODO: Show venue attendees in annotation.
+//         TODO: Show venue attendees in annotation.
+//         Though annotation.title should be the name of a venue in the database,
+//         searching for it in the database may not yield results because
+//         the name of a venue's node in the database does not contain spaces or periods.
+//         Thus we search instead for venueID, which is annotation.title sans " " and ".".
+//        let venueID = annotation.title??.replacingOccurrences(of: "[ .]", with: "", options: [.regularExpression])
+//        self.ref?.child("Test/\(String(describing: venueID))/attendees").observe(DataEventType.value, with: ({ (snapshot) in
+//          for child in snapshot.children.allObjects as! [DataSnapshot] {
+//              print("User \(child.key) is currently going HARD at \(String(describing: annotation.title)).")
+//              TODO: Relay the above information to the user.
+//          }
+//        }))
         
-        let venueID = annotation.title??.replacingOccurrences(of: " ", with: "").replacingOccurrences(of: ".", with: "")
         
-        self.ref.child("Test/\(venueID!)/attendees").observe(DataEventType.value, with: ({ (snapshot) in
-            for child in snapshot.children.allObjects as! [DataSnapshot] {
-                print("User \(child.key) is currently going HARD at \(annotation.title as Optional).")
-            }
-        }))
-        
-        let bundle = Bundle(for: PopUpViewController.self)
-        self.popUpViewController = PopUpViewController(nibName: "PopUpView", bundle: bundle)
-        self.popUpViewController.showInView(aView: self.view, withTitle: (annotation.title)!, animated: true)
+        let popUpViewController = PopUpViewController(nibName: "PopUpView", bundle: popUpBundle)
+        if let annotationTitle = annotation.title {
+            popUpViewController.showInView(aView: self.view, withTitle: annotationTitle, animated: true)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -187,22 +171,23 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     
     @IBAction func LogOutButtonTapped(_ sender: AnyObject) {
         try! Auth.auth().signOut()
-        
         UserDefaults.standard.setValue(nil, forKey: "uid")
-        
-        let LoginPage = self.storyboard?.instantiateViewController(withIdentifier: "Login") as! LoginPageViewController
-        let LoginPageNav = UINavigationController(rootViewController: LoginPage)
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.window?.rootViewController = LoginPageNav
+        if let LoginPage = self.storyboard?.instantiateViewController(withIdentifier: "Login") as? LoginPageViewController {
+            let LoginPageNav = UINavigationController(rootViewController: LoginPage)
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.window?.rootViewController = LoginPageNav
+            }
+        }
     }
     
+    
     func updateMap() {
-        self.ref.child("Test").observe(DataEventType.value, with: ({ (snapshot) in
+        self.ref?.child("Test").observe(DataEventType.value, with: ({ (snapshot) in
+            // Iterate through every venue in the database and create an annotation for each one.
+            // Then add each annotation to the map.
             for child in snapshot.children.allObjects as! [DataSnapshot] {
                 let childDict = child.value as! [String : AnyObject]
-                
                 let annotation = MGLPointAnnotation()
-                
                 if((childDict["name"]) != nil) {
                     let venueName = childDict["name"] as! String
                     annotation.title = venueName
@@ -216,10 +201,29 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
                     let venueCoordinate = CLLocationCoordinate2DMake(coordArray[0], coordArray[1])
                     annotation.coordinate = venueCoordinate
                 }
-                
                 if(annotation.title != nil && (childDict["l"]) != nil && annotation.subtitle != nil) {
-                    self.mapView.addAnnotation(annotation)
-                    print("an annotation was added for \(annotation.title as Optional) at lat:\(annotation.coordinate.latitude) long:\(annotation.coordinate.longitude)")
+                    let coordArray = childDict["l"] as! [Double]
+                    let venueCoordinate = CLLocationCoordinate2DMake(coordArray[0], coordArray[1])
+                    print("checking if annotation coordinate (\(venueCoordinate.longitude),\(venueCoordinate.latitude)) is in map view...")
+//                    let venueMapPoint = MKMapPoint(venueCoordinate)
+                    let rect = MKMapRect(x: self.mapView?.visibleCoordinateBounds.sw.longitude ?? 0.0, y: self.mapView?.visibleCoordinateBounds.ne.latitude ?? 0.0, width: (self.mapView?.visibleCoordinateBounds.ne.longitude ?? 0.0) - (self.mapView?.visibleCoordinateBounds.sw.longitude ?? 0.0) , height: (self.mapView?.visibleCoordinateBounds.sw.latitude ?? 0.0) - (self.mapView?.visibleCoordinateBounds.ne.latitude ?? 0.0))
+                    print("the user is viewing a map where minX = \(rect.minX), maxX = \(rect.maxX), minY = \(rect.minY), maxY = \(rect.maxY)")
+                    if(
+                        (rect.maxX - venueCoordinate.longitude) <= (rect.maxX - rect.minX)
+                        &&
+                        (rect.minY - venueCoordinate.latitude) <= (rect.minY - rect.maxY)
+                        ){
+                        print("annotation map point is within view")
+                        if(!self.annotationArray.contains(annotation.title ?? "ZZZZZZZ")){
+                            self.annotationArray.append(annotation.title ?? "YYYYYYYY")
+                            self.mapView?.addAnnotation(annotation)
+                            print("an annotation was added for \(annotation.title as Optional) at  (\(annotation.coordinate.longitude), \(annotation.coordinate.latitude))")
+                        } else {
+                            print("annotion already exists on map, do not add")
+                        }
+                    } else {
+                        print("annotation map point is not in view")
+                    }
                 }
             }
         }))
@@ -322,8 +326,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         print("the user just exited venue \(region.identifier)")
         
         if(region.identifier.contains(".") != true) {
-            self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/location").setValue("none")
-            self.ref.child("Test/\(region.identifier)/attendees/\(UserDefaults.standard.value(forKey: "uid") as! String)").setValue(nil)
+            self.ref?.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/location").setValue("none")
+            self.ref?.child("Test/\(region.identifier)/attendees/\(UserDefaults.standard.value(forKey: "uid") as! String)").setValue(nil)
         }
             
         if(idleTimer.isValid) {
@@ -340,8 +344,8 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
     @objc func userIsIdle(_ timer: Timer) {
         let idleVenue = timer.userInfo as! String
         print("the user has been at venue \(idleVenue) for a little while.")
-        self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/location").setValue(idleVenue)
-        self.ref.child("Test/\(idleVenue)/attendees/\(UserDefaults.standard.value(forKey: "uid") as! String)").setValue("true")
+        self.ref?.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/location").setValue(idleVenue)
+        self.ref?.child("Test/\(idleVenue)/attendees/\(UserDefaults.standard.value(forKey: "uid") as! String)").setValue("true")
     }
     
     func maskRoundedImage(image: UIImage, radius: Float) -> UIImage {

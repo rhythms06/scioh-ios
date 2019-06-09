@@ -38,7 +38,7 @@ extension UserSearchTable : UISearchResultsUpdating {
                 let userDict = snapshot.value as! Dictionary<String, Any>
                 for (id, detail) in userDict {
                     let details = detail as! Dictionary<String, Any>
-//                    print("username \"\(details["username"])\" exists with fullname \"\(details["fullname"])\"")
+                    // print("username \"\(details["username"])\" exists with fullname \"\(details["fullname"])\"")
                     self.matchingItems = [details["username"] as! String, details["fullname"] as! String]
                     
                     self.fullName = details["fullname"] as! String
