@@ -10,19 +10,8 @@ import UIKit
 import AVFoundation
 
 
-class CameraViewController: UIViewController {
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-  /*  @IBAction func BackButtonTapped(sender: AnyObject) {
-        
-        let ProfilePage = self.storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
-        let ProfilePageNav = UINavigationController(rootViewController: ProfilePage)
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        appDelegate.window?.rootViewController = ProfilePageNav
-        
-    }*/
-    let captureSession = AVCaptureSession()
-    
-    var captureDevice : AVCaptureDevice?
 
     override func viewDidLoad() {
         super.viewDidLoad()
