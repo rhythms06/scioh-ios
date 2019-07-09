@@ -32,7 +32,6 @@
 		A77F69B41C7292220066994F /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F69B31C7292220066994F /* DataService.swift */; };
 		A77F69B61C7293730066994F /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F69B51C7293730066994F /* LoginPageViewController.swift */; };
 		A77F69B81C72938D0066994F /* SignUpPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77F69B71C72938D0066994F /* SignUpPageViewController.swift */; };
-		A78FBFFB1C758FB5006C71A3 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78FBFFA1C758FB4006C71A3 /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -79,7 +78,6 @@
 		A77F69B51C7293730066994F /* LoginPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
 		A77F69B71C72938D0066994F /* SignUpPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpPageViewController.swift; sourceTree = "<group>"; };
 		A77F69B91C72939F0066994F /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
-		A78FBFFA1C758FB4006C71A3 /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,9 +127,13 @@
 				A7637B261C6FEC1100D6F36B /* AppDelegate.swift */,
 				A77F69B31C7292220066994F /* DataService.swift */,
 				2EC8AA061D807C4800923C06 /* SCIOH.entitlements */,
+				A7637B321C6FEC1200D6F36B /* Info.plist */,
+				A7637B2D1C6FEC1200D6F36B /* Assets.xcassets */,
+				A7637B2F1C6FEC1200D6F36B /* LaunchScreen.storyboard */,
+				A7637B2A1C6FEC1100D6F36B /* Main.storyboard */,
+				2E77F9191DEAB41300D158BF /* PopUpView.xib */,
 				A7637B3A1C6FEFB300D6F36B /* HomePageViewController.swift */,
 				2E77F91B1DEAECF900D158BF /* CustomPointAnnotation.swift */,
-				2E77F9191DEAB41300D158BF /* PopUpView.xib */,
 				A77F69AC1C7173C30066994F /* ProfileViewController.swift */,
 				A77F69B51C7293730066994F /* LoginPageViewController.swift */,
 				A77F69B71C72938D0066994F /* SignUpPageViewController.swift */,
@@ -140,14 +142,9 @@
 				2E5EA1701D25B6AD00DA92B6 /* FriendsViewController.swift */,
 				2E5EA16E1D22C5DC00DA92B6 /* SettingsViewController.swift */,
 				2E9DDEC41DEA4B03002C6A2A /* PopUpViewController.swift */,
-				A78FBFFA1C758FB4006C71A3 /* CameraViewController.swift */,
 				A77F69B91C72939F0066994F /* ResetPasswordViewController.swift */,
 				2E5AAD3B1D9392D20000FBB7 /* UserSearchTable.swift */,
 				2E8E03BD1E1454A2000D680F /* ExtProfileViewController.swift */,
-				A7637B2A1C6FEC1100D6F36B /* Main.storyboard */,
-				A7637B2D1C6FEC1200D6F36B /* Assets.xcassets */,
-				A7637B2F1C6FEC1200D6F36B /* LaunchScreen.storyboard */,
-				A7637B321C6FEC1200D6F36B /* Info.plist */,
 				A77F69AA1C70D74D0066994F /* SearchResultsController.swift */,
 				A7637B281C6FEC1100D6F36B /* ViewController.swift */,
 				A75BE0911C77E26C00BEB149 /* TestViewController.swift */,
@@ -345,7 +342,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A77F69AB1C70D74E0066994F /* SearchResultsController.swift in Sources */,
-				A78FBFFB1C758FB5006C71A3 /* CameraViewController.swift in Sources */,
 				2E52F4EB1D91D6B20070FE32 /* AccountSettingsViewController.swift in Sources */,
 				A75BE0921C77E26D00BEB149 /* TestViewController.swift in Sources */,
 				2E7446881CFF84970093FE48 /* ResetPasswordViewController.swift in Sources */,
