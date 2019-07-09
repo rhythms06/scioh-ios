@@ -61,8 +61,9 @@ class TabBarController: UITabBarController, UIImagePickerControllerDelegate, UIN
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-// Local variable inserted by Swift 4.2 migrator.
-let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
+        
+        // Local variable inserted by Swift 4.2 migrator.
+        let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
 
         print("did finish taking pic")
         if let pickedImage = info[convertFromUIImagePickerControllerInfoKey(UIImagePickerController.InfoKey.originalImage)]{
@@ -106,8 +107,8 @@ let info = convertFromUIImagePickerControllerInfoKeyDictionary(info)
                                     return
                                 }
                                 print("Success! The image can be found at \(downloadURL).")
-                                self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/images/\(uuid)").setValue(downloadURL)
-                                self.ref.child("Test/\(location)/images/\(uuid)").setValue(downloadURL)
+                                self.ref.child("users/\(UserDefaults.standard.value(forKey: "uid") as! String)/images/\(uuid)").setValue(downloadURL.absoluteString)
+                                self.ref.child("Test/\(location)/images/\(uuid)").setValue(downloadURL.absoluteString)
                             }
                             
                             //TODO: Add image URL to users/USERID/images/uuid and Test/VenueID/images/uuid

@@ -17,10 +17,6 @@ class PopUpViewController:UIViewController {
     @IBOutlet var numFollowingLabel: UILabel!
     @IBOutlet var numPhotosLabel: UILabel!
     
-    @IBOutlet var numFollowingLabel: UILabel!
-    
-    @IBOutlet var numPhotosLabel: UILabel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.black.withAlphaComponent(0.0)

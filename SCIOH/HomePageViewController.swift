@@ -65,7 +65,7 @@ class HomePageViewController: UIViewController, UISearchBarDelegate, CLLocationM
         super.viewDidLoad()
         // TODO: Create a webform for adding club locations.
         
-        // The following line can be used to manually add the location of Apt. 200:
+        // The following line can be used to manually add the location of test venue Apt. 200:
         // geoFire?.setLocation(CLLocation(latitude: 45.514372, longitude: -73.573364), forKey: "Apt200")
         
         mapView?.delegate = self
