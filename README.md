@@ -34,6 +34,7 @@
 * **Project Lead**: Théo Klein
 * **Developer**: Romain Boudet
 * **Developer**: Sakib Rasul
+* Cocoapods
 * Alamofire
 * Mapbox
 * Google Firebase
