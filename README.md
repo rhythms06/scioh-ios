@@ -33,7 +33,7 @@
 * **Project Lead**: Valentin Lehericy
 * **Project Lead**: Théo Klein
 * **Developer**: Romain Boudet
-* **Developer**: Sakib Rasul
+* **Developer**: Sakib Rasul (me!)
 * Cocoapods
 * Alamofire
 * Mapbox
