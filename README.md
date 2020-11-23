@@ -34,6 +34,8 @@
 * **Project Lead**: Théo Klein
 * **Developer**: Romain Boudet
 * **Developer**: Sakib Rasul (me!)
+
+Made with: 
 * Cocoapods
 * Alamofire
 * Mapbox
